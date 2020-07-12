@@ -15,6 +15,12 @@ jobs:
       - run:
           command: pipenv run jupyter nbconvert --to html Dz.ipynb
           name: Creating artifacts
+      - run:
+          command: |
+            mkdir tmp/;
+            mv dz.html tmp/;
+      - store_artifacts:
+          path: tmp/
 workflows:
   main:
     jobs:
