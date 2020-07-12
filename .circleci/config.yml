@@ -12,8 +12,13 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
-          command: jupyter nbconvert --to html Dz.ipynb
+          command: |
+            jupyter nbconvert --to html Dz.ipynb;
+            mkdir tmp/
+            mv dz.html tmp/
           name: Creating artifacts
+      - store_artifacts:
+          path: tmp/
 
 workflows:
   main:
