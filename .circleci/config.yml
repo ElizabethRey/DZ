@@ -8,11 +8,12 @@ jobs:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
       - run:
-          command: jupyter nbconvert --to html Dz.ipynb
+          command: |
+            sudo pip install pipenv
+            pipenv install
+      - run:
+          command: pipenv run jupyter nbconvert --to html Dz.ipynb
           name: Creating artifacts
 workflows:
   main:
