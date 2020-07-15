@@ -1,0 +1,27 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  build-and-test:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install
+      - run:
+          command: pipenv run jupyter nbconvert --to html Dz.ipynb
+          name: Creating artifacts
+      - run:
+          command: |
+            mkdir tmp/;
+            mv dz.html tmp/;
+      - store_artifacts:
+          path: tmp/
+workflows:
+  main:
+    jobs:
+      - build-and-test
