@@ -1,6 +1,4 @@
-FROM python:3.8
-COPY requirements.txt .
-RUN pip3.8 install -r requirements.txt
-
-COPY Dz.ipynb .
-RUN jupyter nbconvert --to html Dz.ipynb
+FROM circleci/python:3.6.4
+ADD . ./
+RUN sudo pip install -r requirements.txt
+RUN sudo jupyter-nbconvert --to html Dz.ipynb
