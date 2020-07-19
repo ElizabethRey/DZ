@@ -21,12 +21,12 @@ jobs:
             mv dz.html tmp/;
       - run:
           command: |
-            kaggle competitions download titanic -f test.csv;
-            kaggle competitions download titanic -f train.csv;
+            pipenv run kaggle competitions download titanic -f test.csv;
+            pipenv run kaggle competitions download titanic -f train.csv;
       - run:
           command: pipenv run jupyter nbconvert --to html task_kernel.ipynb
       - run:
-          command: kaggle competitions submit titanic -f out.csv -m "Titanic submission"
+          command: pipenv run kaggle competitions submit titanic -f out.csv -m "Titanic submission"
       - run:
           command: mv task_kernel.html tmp/
       - store_artifacts:
