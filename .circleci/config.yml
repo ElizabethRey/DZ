@@ -26,7 +26,9 @@ jobs:
       - run:
           command: pipenv run jupyter nbconvert --to html task_kernel.ipynb
       - run:
-          command: pipenv run kaggle competitions submit titanic -f out.csv -m "Titanic submission"
+          command: mv out.csv tmp/
+      - run:
+          command: pipenv run kaggle competitions submit titanic -f tmp/out.csv -m "Titanic submission"
       - run:
           command: mv task_kernel.html tmp/
       - store_artifacts:
