@@ -24,9 +24,7 @@ jobs:
             pipenv run kaggle competitions download titanic -f test.csv;
             pipenv run kaggle competitions download titanic -f train.csv;
       - run:
-          command: pipenv run jupyter nbconvert --to html task_kernel.ipynb
-      - run:
-          command: mv out.csv tmp/
+          command: pipenv run jupyter nbconvert --to html task_kernel.ipynb --execute
       - run:
           command: pipenv run kaggle competitions submit titanic -f tmp/out.csv -m "Titanic submission"
       - run:
